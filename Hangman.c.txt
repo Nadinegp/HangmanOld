@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <conio.h>
+char search(char str[],char ch,int n)
+{
+    
+    for(int i=0;i<n;i++)
+    {
+        if(ch==str[i])
+        return 1;
+    }
+    return -1;
+}
+
+int main()
+{
+    char str[100],ch;
+    int n,count=0,mistake=3,i;
+    printf("Enter a word: \n");
+    gets(str);
+    puts(str);
+    n=strlen(str);
+    for(i=0;i<n+3;i++)
+    {
+    printf("Enter a letter to guess: \n");
+    scanf(" %c",&ch);
+    int check = search(str,ch,n);
+    
+    if(check==1)
+    {
+        count++;
+        printf("correct.");
+    }
+    else if(check==-1)
+    {
+        mistake--;
+        printf("You've %d trials\n",mistake);
+        
+    }
+    if(count==n)
+    {
+        printf("WINNER!");
+        break;
+    }
+    if(mistake==0)
+    {
+        printf("LOST!");
+        break;
+    }
+    } //end of for loop.
+    return 0;
+}
